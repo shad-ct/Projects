@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KeyCode</title>
+</head>
+<body>
+    <h1 id="DisplayKeyCode">HI</h1>
+    <a href="https://github.com/shad-ct"><h5>shad</h5></a>
+    <!--C S S --> 
+    <style>
+        #DisplayKeyCode {
+            font-size: 50px;
+            text-align: center;
+            position: absolute;
+            font-family: monospace;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        body{
+            background-color: black;
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+        }
+        a{
+            color: white; 
+            text-decoration: none;
+            letter-spacing: 20px;
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+    </style>
+    <!-- J S -->
+    <script>
+        display = document.getElementById("DisplayKeyCode");
+        window.addEventListener('keydown',keyCode);     
+            function keyCode(e){
+                console.log(e)
+            console.log(e.key);
+            display.innerHTML = "You pressed : \n" + e.key + "<br> \n Key code : " + e.keyCode;
+            if(e.keyCode === 32){
+            display.innerHTML = "You pressed : SpaceBar\n" +  "<br> \n Key code : " + e.keyCode;
+            }
+        }
+    </script>
+</body>
+</html>
