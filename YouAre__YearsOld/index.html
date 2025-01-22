@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>You are ___ Old</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+            margin: 0;
+            background-color: black;
+            color: white;
+        }
+
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            max-width: 300px;
+            width: 100%;
+        }
+
+        button {
+            cursor: pointer;
+            background-color: white;
+            color: black;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="date" min="1970-01-01" max="2025-12-31" id="dob">
+    <button onclick="calculateAge()">Calculate Age</button>
+    <h1 id="display">Enter Your DOB</h1>
+
+    <script>
+        function calculateAge() {
+            const today = new Date();
+            const dob = new Date(document.getElementById('dob').value);
+
+            let years = today.getFullYear() - dob.getFullYear();
+            let months = today.getMonth() - dob.getMonth();
+            let days = today.getDate() - dob.getDate();
+            let totalMonths = (years * 12) + months;
+
+
+            if (days < 0) {
+                totalMonths--;
+                const lastMonthDays = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+                days += lastMonthDays;
+            }
+
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            if(today < dob){
+                document.getElementById('display').innerHTML = "Invalid DOB";
+                return;
+            }
+
+            document.getElementById('display').innerHTML = `You are ${years} years old, ${totalMonths} months old, and ${days} days old`;
+        }
+    </script>
+</body>
+</html>
