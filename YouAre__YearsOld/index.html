@@ -47,14 +47,18 @@
             const today = new Date();
             const dob = new Date(document.getElementById('dob').value);
 
+            if (today < dob) {
+                document.getElementById('display').innerHTML = "Invalid DOB";
+                return;
+            }
+
             let years = today.getFullYear() - dob.getFullYear();
             let months = today.getMonth() - dob.getMonth();
             let days = today.getDate() - dob.getDate();
             let totalMonths = (years * 12) + months;
 
-
             if (days < 0) {
-                totalMonths--;
+                months--;
                 const lastMonthDays = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
                 days += lastMonthDays;
             }
@@ -63,12 +67,11 @@
                 years--;
                 months += 12;
             }
-            if(today < dob){
-                document.getElementById('display').innerHTML = "Invalid DOB";
-                return;
-            }
+            const timeDiff = today.getTime() - dob.getTime();
+            const totalDays = Math.floor(timeDiff / (1000 * 3600 * 24));
 
-            document.getElementById('display').innerHTML = `You are ${years} years , ${totalMonths} months and ${days} days old`;
+
+            document.getElementById('display').innerHTML = `You are ${years} years , ${totalMonths} months old and ${totalDays} days old.`;
         }
     </script>
 </body>
